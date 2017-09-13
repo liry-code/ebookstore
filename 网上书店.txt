@@ -1,0 +1,309 @@
+1.设置图片的相对路径：${pageContext.request.contextPath}/images/
+
+2.网上商城的设计流程
+	1>根据前端页面进行模块化
+	2>搭建基本的模型框架
+	3>设计用户的登录时间（userListener进行监听）：${cookie.lastTime.value}
+	cookie：
+		存储：Cookie cookies = new Cookie("键","值");
+			response.addCookie(cookies);
+		获取
+			Cookie[] cookies = request.getCookies();
+			if(cookies!=null&&cookies.length>0){
+				for(Cookie c : cookies){
+					if("nowTime".equals(c.getName)){
+						//获取对应键的值
+						nowTime = c.getValue();
+						break;
+					}
+				}
+			}
+			
+		修改
+			//修改为当前时间
+			nowTime = df.format(new Date());
+			Cookie c1 =  new Cookie("nowTime",nowTime);
+		删除
+			c1.setAge();
+		
+		添加到Cookie集合中
+			response.addCookie(c1);
+	
+
+	4>创建数据库：book数据库，bookClass数据库
+		book数据库中存储bookClass对象
+		
+	5>在list页面显示商品列表
+		（1）先从数据库中获取所有的图书信息
+			//进行测试
+			public static void main(String[] args) throws SQLException {
+				bookServiceImp bookserviceimp = new bookServiceImp();
+				List<Book> booklist= bookserviceimp.getAll();
+				for (Book book : booklist) {
+					System.out.println(book);
+				}
+			}
+			进行单元测试，会出现乱码问题
+			解决：
+			
+			
+		（2）将获取的图书信息存储在request中，并将信息传递给list页面（四大范围）
+			bookSevlet:
+				booklist = bookserviceimp.getAll();
+				request.setAttribute("booklist", booklist);
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				
+			在list页面中，通过四大范围获取bookList集合对象
+			${bookList}
+		(3)分页实现步骤
+		
+				注意：count为mysql数据库中的关键字
+		
+			《1. List<Book> list = getAll();      ///得到所有的图书集合
+			
+				在此基础上，添加限制条件 PageBean pg = new PageBean()      
+				List<Book>    list =  getAll(pg);
+				
+				//分页的sql语句
+				// 判断当前页是不是末尾页或者整除页
+				//思路：先分析当前页是否为最大页：
+						《1》当前页是最大页
+								（1）当最大页满页时，  
+									(pagebean.getCurrentPageNum() - 1)* pagebean.getPerPageRow() + " , "+ pagebean.getPerPageRow()
+								（2）当最大页不满页时    
+									(pagebean.getCurrentPageNum() - 1)* pagebean.getPerPageRow() + " , " + counter% pagebean.getPerPageRow()
+						《2》当前页不是最大页
+								（1）如果不是最大页，那么当前页肯定是满页的    
+									(pagebean.getCurrentPageNum() - 1)* pagebean.getPerPageRow() + " , "+ pagebean.getPerPageRow()
+				
+				代码如下：
+					if (pagebean.getCurrentPageNum() != pagebean.getMaxPage()
+						|| counter % pagebean.getPerPageRow() == 0) {
+					sql = sql + " limit "
+							+ (pagebean.getCurrentPageNum() - 1)* pagebean.getPerPageRow() + " , "+ pagebean.getPerPageRow() ;
+						//System.out.println(sql);
+					} else {
+						sql = sql + " limit "
+							+ (pagebean.getCurrentPageNum() - 1)* pagebean.getPerPageRow() + " , " + counter% pagebean.getPerPageRow() ;
+						//System.out.println(sql);
+					}
+				
+			《2.  
+					[1]   [2]   [3]   在分页时，实现页码的改变与移动
+					
+					分析的代码：
+						private static int showNum=3;  //页面中显示页码个数(奇数)
+						public int getbeginPage(){
+			
+							// (1)当MaxNum最大页》》showNum
+							// 如果当前页》showNum/2 --->end=first+showNum
+							// 如果当前页《showNum/2 --->first=当前页 end=first+showNum
+							// 如果当前页》MaxNum-showNum/2 --->first=MaxNum-showNum end=first+showNum
+							// int beginpage = this.getCurrentPageNum()-showNum/2;
+							// if(beginpage<1){
+							// beginpage=1;
+							// }
+
+							// （2）当MaxNum最大页《《showNum
+							int beginpage = 1;
+							if(this.getCurrentPageNum()<=(showNum/2+1)|| (this.getMaxPage() < showNum)){
+								beginpage = 1;
+							}else if((this.getCurrentPageNum()>(showNum/2+1))&&(this.getCurrentPageNum()<(this.getMaxPage()-showNum/2))){
+								beginpage = this.getCurrentPageNum()-showNum/2;
+							}else if(this.getCurrentPageNum()>=(this.getMaxPage()-showNum/2-1)){
+								beginpage = this.getMaxPage() - showNum+1;
+							}
+							return beginpage;
+						}
+						//   1 2 3   4  5  6   7  8  9  10   11    shown=5  shown/2+1=3
+						public int getendPage(){
+							int endpage =  this.getbeginPage()+showNum-1;
+							if (this.getMaxPage() < showNum) {
+								endpage = this.getMaxPage();
+							}
+							return endpage;
+						}
+					
+					在pagebean中必须定义get方法， getbeginPage()方法
+							在list页面获取：${pagebean(对象).beginPage}
+					
+					<c:forEach var="i" begin="${pagebean.beginPage }" end="${pagebean.endPage }" >
+						<c:if test="${pagebean.currentPageNum eq i }">
+							[<font color=red>${i}</font>]&nbsp;&nbsp;
+						</c:if>
+						<c:if test="${pagebean.currentPageNum ne i }">
+							<c:url var="uu" value="book.do">
+								<c:param name="currentPageNum" value="${i }"></c:param>
+								<c:param name="bookclassid" value="${param.bookclassid}"></c:param>
+							</c:url>
+							[<a href="${uu}">${i}</a>]&nbsp;&nbsp;
+						</c:if>
+					</c:forEach>
+					
+		(4)做左边列表菜单
+			由于左边菜单是属于共享数据（图书的类别）(在此不考虑分页情况)，每个用户都可以看得见的数据，所以选择监听器将存放图书的类别Application
+			
+			下拉菜单的部分与上述一致
+			
+			当点击类别中的选项之后，list显示图书的信息也将发生改变（他们类型必须都是该类型的书籍）通过下拉菜单项中存有bookClass的ID信息，在点击选项之后将id通过超链传递给servlet，   将bookClass的值显示在商品列表上面
+			
+			因此修改如下： List<Book> list = getAll( bookClass , pageBean);
+			
+			问题：在同一类型的图书信息查询分页查询时，即使点击下一页页面并不发生变化
+			解决：在传递当前页面值时，将图书类别的id也一同传输出去（使用param）
+			
+			在list页面代码如下：
+				<c:if test="${pagebean.currentPageNum ne i }">
+					<c:url var="uu" value="book.do">
+						<c:param name="currentPageNum" value="${i }"></c:param>
+						<c:param name="bookclassid" value="${param.bookclassid}"></c:param>
+					</c:url>
+					[<a href="${uu}">${i}</a>]&nbsp;&nbsp;
+				</c:if>
+				
+			问题：在查询所有的图书信息时，bookclassid=null,按照之前的sql语句就查询不到全部图书信息
+			解决：在数据库端分情况讨论sql语句
+				//默认情况下（即所有图书全部输出）
+				sql = select * from t_book where 1=1;   //获取所有的图书信息
+				if(bookclassid！=null){
+					//按图书的类别输出对应的图书信息
+					sql = sql + " and id1=bookclassid ";
+				}
+				
+				然后准备分页的操作的sql语句
+			
+			
+	6》实现左边的下拉菜单：实现下拉菜单与列表菜单同步
+		<OPTION value="">所有图书</OPTION>
+		<c:if test="${not empty bookclasslist}">
+			<c:forEach var="bc" items="${bookclasslist}">
+			<c:if test="${(not empty bc)  && (bc.id==bookclass.id) }">
+				<OPTION value="${bc.id }" selected="selected" >${bc.className }</OPTION>
+			</c:if>
+			<c:if test="${(empty bc)  || (bc.id!=bookclass.id) }">
+			<OPTION value="${bc.id }" >${bc.className }</OPTION>
+			</c:if>
+			</c:forEach>
+		</c:if>
+		
+		
+	7》模糊查询：
+		（7.1）
+			思路：将要查询的关键字（keyword）设置为Book的一个对象的属性，通过分页查询算法进行查询List<Book> list = getAll( bookClass , pageBean);
+				//创建一个Book对象    Book book = new Book();
+				//获取要查询图书信息的关键字
+				//创建一个Book对象，可以存储迷糊查询条件(bookName)它的classId为空和图书类别
+				当bookclassid不为空时，将其添加到book对象中
+				当bookName不为空时，将其添加到book对象中。
+				
+				//先获取图书的类型，在设置其bookClass对象的id（其bookName为空）
+				book.getBookcl().setId(bookclassid);
+
+				String keyword = request.getParameter("keyword");
+				//keyword如果为null，则不进行模糊查询操作，反之进行模糊查询
+				if(keyword != null ){
+					book.setBookName(keyword);
+				}
+			
+			在bookDao中查询数据库时：
+				1》当book.getBookcl为空时，说明bookClass为空，则进行模糊查询
+				2》当book.getBookcl不为空时，则进行类别查询（没有模糊条件）
+		
+				
+				// 1》当book.getBookcl不为空时，则进行类别查询（没有模糊条件）
+				在bookDao方法中，对Book对象参数book0进行判断，
+				if(book0!=null){
+				//当book0对象存在时，book0对象中会有bookName属性或者bookclassid属性（二者是对立存在）
+				if(book0.getBookName()!=null){
+					// 2》当book.getBookcl为空时，说明bookClass为空，则进行模糊查询
+					sql = sql + " and t_book.bookName like  '%" + book0.getBookName() + "%' ";
+					//System.out.println(sql);
+				}else{
+					sql = sql + " and t_book.bookClass_id = " + book0.getBookcl().getId() ;
+					//System.out.println(sql);
+				}
+			}
+			
+			问题：存在的问题是：当查询全部的图书信息时，页面没有任何数据
+			原因：在bookServlet中直接创建book = new Book()对象时，也会自动new bookClass()对象，所以即使没有bookclassid属性，该book对象时存在且不为空，所以bookDao中无法判断，故而全部数据无法输出
+			解决：在bookServlet中，
+					//获取要查询图书信息的关键字
+					//创建一个Book对象，可以存储迷糊查询条件(bookName)和图书类别
+					Book book = null;      //以免查询所有图书时，sql语句出现错误
+					//先获取图书的类型，在设置其bookClass对象的id
+					String keyword = request.getParameter("keyword");
+					//keyword如果为null，则不进行模糊查询操作，反之进行模糊查询
+					if(!((keyword == null ) && ( bookclassid == null))){
+						//new Book()对象会产生一个bookClass对象
+						book = new Book();
+						if(keyword != null){
+							book.setBookName(keyword);
+						}
+						
+						if(bookclassid != null){
+							book.getBookcl().setId(bookclassid);
+						}
+					}
+			
+			
+			注意：在模糊查询时：like  '%思想%'     ------》%%之间只能是模糊查询的数据，%与模糊词之间不能存在空格
+				
+			完成之后：在模糊查询的信息进行分页显示时，应该将模糊查询的关键字、当前页码、图书类别等参数进行传递到bookServlet页面
+			解决：<c:forEach var="i" begin="${pagebean.beginPage }" end="${pagebean.endPage }" >
+					<c:if test="${pagebean.currentPageNum eq i }">
+						[<font color=red>${i}</font>]&nbsp;&nbsp;
+					</c:if>
+					<c:if test="${pagebean.currentPageNum ne i }">
+						<c:url var="uu" value="book.do">
+							<c:param name="currentPageNum" value="${i }"></c:param>
+							<c:param name="bookclassid" value="${param.bookclassid}"></c:param>
+							<c:param name="keyword" value="${param.keyword }"></c:param>
+						</c:url>
+						[<a href="${uu}">${i}</a>]&nbsp;&nbsp;
+					</c:if>
+				</c:forEach>
+				
+		
+	8》购物车---》使用Map<Long , shopItem>集合存储
+			Long               shopItem(Book , num )
+			00001                java编程思想     2本
+			00010                菜谱大全         1本
+		完成添加、删除、清空购物车、更新购物车功能
+		
+		
+		
+ 9》注册用户时：有些注册条件可填可不写，因此在注册用户时应该使用动态sql语句
+ 	List<Object> list =new ArrayList<>();    //使用结合存储数据
+		list.add(user.getTel());   //必填项
+		//可选项
+		if((user.getMailcode()!=null) && (user.getMailcode().trim().length()>0)){
+			s1.append(",mailcode");
+			s2.append(",?");
+			list.add(user.getMailcode());
+		}
+ 		
+ 		//将数据设置在sql语句中
+	 	if((list!=null)&&(list.size()>0)){
+			//遍历集合
+			for(int i=0;i<list.size();i++){
+				ps.setObject(i+1, list.get(i));
+			}
+		}
+
+ 		//对注册时的信息进行校验
+ 		客户端校验与服务器校验相结合
+ 		
+ 	
+ 	10》注销用户使用：session.invali()方法
+ 		public void doExit(HttpServletRequest request,
+ 			HttpServletResponse response){
+ 			//获取session对象
+ 			HttpSession session=request.getSession();
+ 			//注销该会话
+ 			session.invalidate();
+ 			//重定向到首页
+ 			response.sendRedirect(request.getContextPath()+"/index.jsp");
+ 			return;
+ 		}
+ 
+ 

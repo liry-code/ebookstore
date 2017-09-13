@@ -1,0 +1,99 @@
+P {
+	FONT-SIZE: 9pt; COLOR: #666666
+}
+TD {
+	FONT-SIZE: 9pt; COLOR: #666666
+}
+INPUT {
+	FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-SIZE: 9pt; COLOR: #666666
+}
+A {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #333333; TEXT-DECORATION: underline
+}
+A:visited {
+	COLOR: #333333
+}
+FORM {
+	MARGIN: 0px
+}
+.foot {
+	COLOR: #ffffff
+}
+A.plink:hover {
+	FONT-SIZE: 12px; COLOR: #0033cc; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.plink:link {
+	FONT-SIZE: 12px; COLOR: #0033cc; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.plink:unknown {
+	FONT-SIZE: 12px; COLOR: #0033cc; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.plink:visited {
+	FONT-SIZE: 12px; COLOR: #0033cc; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.pname:hover {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.pname:link {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.pname:unknown {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.pname:visited {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.Llink:hover {
+	FONT-SIZE: 12px; COLOR: #0000ff; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.Llink:link {
+	FONT-SIZE: 12px; COLOR: #0000ff; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.Llink:unknown {
+	FONT-SIZE: 12px; COLOR: #0000ff; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+A.Llink:visited {
+	FONT-SIZE: 12px; COLOR: #0000ff; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+.ptitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 18px; COLOR: #000000; FONT-FAMILY: arial
+}
+.ttable {
+	FONT-SIZE: 12px; COLOR: #ffffff
+}
+.txt {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; LINE-HEIGHT: 18px
+}
+.link {
+	FONT-SIZE: 12px
+}
+.main {
+	FONT-SIZE: 12px; LINE-HEIGHT: 20px
+}
+.ko {
+	FONT-SIZE: 12px; FONT-FAMILY: arial
+}
+.v15e {
+	LINE-HEIGHT: 14pt; FONT-FAMILY: arial
+}
+.v9 {
+	FONT-SIZE: 12px; LINE-HEIGHT: 14pt; FONT-FAMILY: arial
+}
+.v20 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 14pt; FONT-FAMILY: arial
+}
+.ethead {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: verdana
+}
+.etc {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: verdana
+}
+.ethead2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: verdana
+}

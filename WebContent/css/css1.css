@@ -1,0 +1,35 @@
+/*基本信息*/
+body {font:12px Tahoma;margin:0px;text-align:center;background:##FFCCFF}
+a:link,a:visited {font-size:12px;text-decoration:none}
+a:hover{}
+
+/*页面层容器*/
+#container {width:750px;margin:10px auto}
+
+/*页面头部*/
+#header {background:url(../images/logo.gif) no-repeat;
+}
+
+#menu {padding:20px 20px 0 0;}
+#menu ul {list-style:none;margin:0px}
+#menu ul li {float:right;margin:0 10px;display:block;line-height:28px}
+.menudiv {width:1px;height:28px;background:#999}
+#menu ul li a:link,#menu ul li a:visited {font-weight:bold;color:#666}
+#menu ul li a:hover{}
+
+#banner {background:url(images/banner.jpg) 0 10px no-repeat;
+	       width:730px;
+         margin:auto;
+         height:10px;
+         border-bottom:5px solid #6600FF;
+         clear:both;}
+
+
+
+/*页面主体*/
+#pagebody {width:730px;margin:8px auto;}
+#sidebar {width:160px;text-align:left;float:left;clear:left;overflow:hidden;border:1px solid #E00;height:auto}
+#mainbody {width:560px;text-align:left;float:right;clear:right;overflow:hidden;border:1px solid #E00;height:auto}
+
+/*页脚*/
+#footer {width:730px;margin:auto;clear:both;height:50px;text-align:center;border:1px solid #E00;}

@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>index.html</title>
+
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="this is my page">
+		<meta http-equiv="content-type" content="text/html; charset=GB2312">
+
+		<link rel="stylesheet" type="text/css" href="css/css1.css">
+		<link rel="stylesheet" type="text/css" href="css/pub.css">
+
+	</head>
+
+	<body>
+		<div id="container">
+			<!-- 页头 -->
+			<div id="header">
+				<div id="menu">
+					<ul>
+						<li>
+							<a href="#">关于</a>
+						</li>
+						<li class="menudiv"></li>
+						<li>
+							<a href="#">服务台结帐</a>
+						</li>
+						<li class="menudiv"></li>
+						<li>
+							<a href="#">我的购物车</a>
+						</li>
+						<li class="menudiv"></li>
+						<li>
+							<a href="#">商品目录</a>
+						</li>
+						
+						
+						
+						<li class="menudiv"></li>
+						<li>
+							<a href="#">首页</a>
+						</li>
+						
+						
+
+
+
+
+					</ul>
+				</div>
+				<div id="banner">
+
+				</div>
+			</div>
+
+			<!-- 主体 -->
+			<div id="pagebody">
+				<!-- 左侧 -->
+				<div id="sidebar">
+					 <TABLE cellSpacing=0 cellPadding=0 width=152 border=0>
+        <TBODY>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=0 cellPadding=0 width=152 border=0>
+              <TBODY>
+              <TR>
+                <TD colSpan=3><IMG src="images/user_info_top.gif" 
+                border=0></TD></TR>
+              <TR>
+                <TD bgColor=#cccccc><IMG height=1 alt="" 
+                  src="images/dot.gif" width=1 border=0></TD>
+                <TD class=ko align=middle width=150>
+                  <SCRIPT language=JavaScript>
+		   <!--
+		     function winGetPWD(url){			 window.open(url,"getpwd","top=100,left=100,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no, status=no,width=240,height=150");}
+			//-->
+			</SCRIPT>
+
+                  <FORM name=f1 onsubmit="return check()" 
+                  action=userinfo.do?act=login method=post>
+                  <TABLE cellSpacing=3 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>用户名:</TD>
+                      <TD><INPUT size=10 name=username style="width:80px"></TD></TR>
+                    <TR>
+                      <TD>密码:</TD>
+                      <TD><INPUT type=password size=10 name=userpass style="width:80px"></TD></TR>
+                    <TR>
+                      <TD>验证码:</TD>
+                      <TD><INPUT size=10 name=checkcode style="width:80px"></TD></TR>
+                    <TR>
+                      <TD align=middle colSpan=2><IMG 
+                        src="images/DispImgServlet"></TD></TR>
+                    <TR></TR>
+                    <TR>
+                      <TD align=middle 
+                        colSpan=2><INPUT type=submit value=登录>&nbsp;&nbsp;<INPUT onclick="javascript:window.location.href='userinfo.do?act=newregister'" type=button value=注册><BR></TD></TR>
+                    <TR>
+                      <TD class=ko align=middle colSpan=2>
+                        </TD></TR></TBODY></TABLE></FORM></TD>
+                <TD bgColor=#cccccc><IMG height=1 src="images/dot.gif" 
+                  width=1 border=0></TD></TR>
+              <TR>
+                <TD colSpan=3><IMG src="images/user_info_bottom.gif" 
+                  border=0></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=0 width=152 border=0>
+              <TBODY>
+              <TR>
+                <TD height=5><IMG height=5 src="images/dot.gif" width=1 
+                  border=0></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=0 width=152 border=0>
+              <TBODY>
+              <TR>
+                <TD colSpan=3><IMG src="images/left_search_top.gif" 
+                  border=0></TD></TR>
+              <TR>
+                <TD bgColor=#cccccc><IMG height=1 src="images/dot.gif" 
+                  width=1 border=0></TD>
+                <TD class=ko align=middle width=150>
+                  <FORM class=v9 action=goods.do?act=selectbypage method=post>
+                  <TABLE cellSpacing=0 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD colSpan=2><INPUT style="WIDTH: 130px" 
+                      name=keyword></TD></TR>
+                    <TR>
+                      <TD><SELECT class=v9 style="WIDTH: 110px" 
+                          name=storetype> <OPTION value="" selected>所有</OPTION> 
+                          <OPTION value=1>图书</OPTION> <OPTION 
+                          value=2>图书</OPTION> <OPTION value=3>图书</OPTION> 
+                          <OPTION value=4>图书</OPTION> <OPTION 
+                          value=5>图书</OPTION> <OPTION value=6>图书</OPTION></SELECT> 
+                      </TD>
+                      <TD><INPUT type=image src="images/search_go.gif" 
+                        border=0 name=imageField></TD></TR></TBODY></TABLE></FORM></TD>
+                <TD bgColor=#cccccc><IMG height=1 src="images/dot.gif" 
+                  width=1 border=0></TD></TR>
+              <TR>
+                <TD colSpan=3><IMG src="images/user_info_bottom.gif" 
+                  border=0></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=0 width=152 border=0>
+              <TBODY>
+              <TR>
+                <TD height=5><IMG height=5 src="images/dot.gif" width=1 
+                  border=0></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=0 width=152 border=0>
+              <TBODY>
+              <TR>
+                <TD colSpan=3><IMG src="images/left_product_top.gif" 
+                  border=0></TD></TR>
+              <TR>
+                <TD bgColor=#cccccc><IMG height=1 src="images/dot.gif" 
+                  width=1 border=0></TD>
+                <TD class=ko align=middle width=150>
+                  <TABLE width=140>
+                    <TBODY>
+                    <TR>
+                      <TD class=txt><A 
+                        href="http://localhost:8000/shop/goods.do?act=selectbypage&amp;storetype=1"><IMG 
+                        alt="" src="images/add.gif" align=left vspace=4 
+                        border=0>图书</A><BR><A 
+                        href="http://localhost:8000/shop/goods.do?act=selectbypage&amp;storetype=2"><IMG 
+                        alt="" src="images/add.gif" align=left vspace=4 
+                        border=0>图书</A><BR><A 
+                        href="http://localhost:8000/shop/goods.do?act=selectbypage&amp;storetype=3"><IMG 
+                        alt="" src="images/add.gif" align=left vspace=4 
+                        border=0>图书</A><BR><A 
+                        href="http://localhost:8000/shop/goods.do?act=selectbypage&amp;storetype=4"><IMG 
+                        alt="" src="images/add.gif" align=left vspace=4 
+                        border=0>图书</A><BR><A 
+                        href="http://localhost:8000/shop/goods.do?act=selectbypage&amp;storetype=5"><IMG 
+                        alt="" src="images/add.gif" align=left vspace=4 
+                        border=0>图书</A><BR><A 
+                        href="http://localhost:8000/shop/goods.do?act=selectbypage&amp;storetype=6"><IMG 
+                        alt="" src="images/add.gif" align=left vspace=4 
+                        border=0>图书</A><BR></TD></TR></TBODY></TABLE></TD>
+                <TD bgColor=#cccccc><IMG height=1 src="images/dot.gif" 
+                  width=1 border=0></TD></TR>
+              <TR>
+                <TD colSpan=3><IMG src="images/user_info_bottom.gif" 
+                  border=0></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=0 width=152 border=0>
+              <TBODY>
+              <TR>
+                <TD height=5><IMG height=5 src="images/dot.gif" width=1 
+                  border=0></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+				</div>
+				<!-- 右侧 -->
+				<div id="mainbody">
+				<BR>1、如果需要修改请到订购车处进行。 
+      <HR SIZE=1>
+
+      <FORM name=frmservice onsubmit="return checkaddress()" 
+      action=order.do?act=insert method=post>
+      <TABLE cellSpacing=1 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#558bff>
+          <TD class=txt align=middle width="8%" height=25><FONT 
+            color=#ffffff>序号</FONT></TD>
+          <TD class=txt align=middle width="20%" height=25><FONT 
+            color=#ffffff>物品名称</FONT></TD>
+          <TD class=txt align=middle width="14%" height=25><FONT 
+            color=#ffffff>订购数量</FONT></TD>
+          <TD class=txt align=middle width="13%" height=25><FONT 
+            color=#ffffff>价格</FONT></TD>
+          <TD class=txt align=middle width="15%" height=25><FONT 
+            color=#ffffff>总价</FONT></TD></TR>
+        <TR bgColor=#e1e1e1>
+          <TD class=txt align=middle width="8%">1 </TD>
+          <TD class=txt align=middle width="20%">恋爱100天 </TD>
+          <TD class=txt align=middle width="14%">1 </TD>
+          <TD class=txt align=middle>6.00 </TD>
+          <TD class=txt align=middle>6.00 </TD></TR>
+        <TR bgColor=#e1e1e1>
+          <TD class=txt align=middle width="8%">2 </TD>
+          <TD class=txt align=middle width="20%">天下奇观 </TD>
+          <TD class=txt align=middle width="14%">1 </TD>
+          <TD class=txt align=middle>10.00 </TD>
+          <TD class=txt align=middle>10.00 </TD></TR>
+        <TR bgColor=#e1e1e1>
+          <TD class=txt align=middle width="8%"></TD>
+          <TD class=txt align=middle width="20%"></TD>
+          <TD class=txt align=middle width="14%"></TD>
+          <TD class=txt align=middle>总计 </TD>
+          <TD class=txt align=middle>16.00 </TD></TR></TBODY></TABLE>
+      <HR SIZE=1>
+
+      <TABLE width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD class=txt align=right width="22%">下单人<FONT 
+            color=#666666>真实姓名：</FONT></TD>
+          <TD width="78%" height=25><INPUT size=28 value=ShopUser 
+            name=txtorderman> </TD></TR>
+        <TR>
+          <TD class=txt align=right width="22%" height=25><FONT 
+            color=#666666>接收人地址：</FONT></TD>
+          <TD width="78%" height=25><INPUT size=58 value=123123 
+            name=txtrecadd> </TD></TR>
+        <TR>
+          <TD class=txt align=right width="22%" height=25><FONT 
+            color=#666666>接收人邮编：</FONT></TD>
+          <TD width="78%" height=25><INPUT size=15 value=123123 
+            name=txtreczip> </TD></TR>
+        <TR>
+          <TD class=txt align=right width="22%" height=25><FONT 
+            color=#666666>接收人电话：</FONT></TD>
+          <TD width="78%" height=25><INPUT size=58 value=81657890 
+            name=txtrecPhone> </TD></TR>
+        <TR>
+          <TD class=txt align=right width="22%" height=25><FONT 
+            color=#666666>接收人Email：</FONT></TD>
+          <TD width="78%" height=25><INPUT size=58 value=aa@vip.sina.com 
+            name=txtrecEmail> </TD></TR>
+        <TR align=middle>
+          <TD class=txt colSpan=2 height=25><INPUT type=image height=15 
+            width=84 src="images/send.gif" border=0 name=imageField2> 
+          </TD></TR></TBODY></TABLE></FORM>
+      <HR SIZE=1>
+      <BR>
+      
+				</div>
+			</div>
+
+			<!-- 页脚 -->
+			<div id="footer">
+				  <br>
+          版权所有| 法律声明| 联系我们 
+			</div>
+
+
+		</div>
+	</body>
+</html>

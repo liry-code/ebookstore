@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<display-name></display-name>
+
+	<servlet>
+		<servlet-name>user</servlet-name>
+		<servlet-class>com.li.servlet.UserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>user</servlet-name>
+		<url-pattern>/user.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>book</servlet-name>
+		<servlet-class>com.li.servlet.BookServlet</servlet-class>
+		<init-param>
+			<param-name>perPageRow</param-name>
+			<param-value>2</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>book</servlet-name>
+		<url-pattern>/book.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>car</servlet-name>
+		<servlet-class>com.li.servlet.CarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>car</servlet-name>
+		<url-pattern>/car.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>picture</servlet-name>
+		<servlet-class>com.li.servlet.PictureServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>picture</servlet-name>
+		<url-pattern>/picture.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>order</servlet-name>
+		<servlet-class>com.li.servlet.OrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>order</servlet-name>
+		<url-pattern>/order.do</url-pattern>
+	</servlet-mapping>
+	<listener>
+		<listener-class>com.li.listener.CountUser</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>com.li.listener.BookClassListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>appName</param-name>
+		<param-value>网上书店</param-value>
+	</context-param>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
